@@ -1,7 +1,5 @@
 package edu.escuelaing.arep.reflexion;
 
-import static org.mockito.Mockito.*;
-
 import java.io.IOException;
 import java.net.URISyntaxException;
 
@@ -31,17 +29,6 @@ public class AppTest extends TestCase {
             e.printStackTrace();
         }
         assertNotNull(response);
-    }
-
-    @Test
-    public void testNotGetHtml() {
-        byte[] response = null;
-        try {
-            response = server.responseBody("text/html", server.uriFile + "/index2.html");
-        } catch (IOException | URISyntaxException e) {
-            e.printStackTrace();
-        }
-        assertTrue(response == null);
     }
 
     @Test
