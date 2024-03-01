@@ -1,5 +1,8 @@
 package edu.escuelaing.arep.reflexion;
 
+/**
+ * This class is the main class of the application.
+ */
 public class App {
 
     public static void main(String[] args) {

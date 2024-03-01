@@ -23,6 +23,9 @@ import com.google.gson.JsonObject;
 
 import edu.escuelaing.arep.reflexion.service.Function;
 
+/**
+ * This class is a HttpServer that receives requests and sends responses.
+ */
 public class HttpServer {
 
     public static String uriFile;
@@ -125,6 +128,15 @@ public class HttpServer {
 
     }
 
+    /**
+     * Method that calls a method of the application.
+     * 
+     * @param requestUri URI of the request.
+     * @param method     Method of the request.
+     * @return Byte array with the response of the component.
+     * @throws IllegalAccessException
+     * @throws InvocationTargetException
+     */
     private byte[] callComponent(URI requestUri, String method) throws IllegalAccessException, InvocationTargetException {
         System.out.println("Calling component");
         System.out.println(requestUri);
@@ -136,6 +148,14 @@ public class HttpServer {
         return response.toString().getBytes();
     }
 
+    /**
+     * Method that calls a service of the application.
+     * 
+     * @param requestUri URI of the request.
+     * @param method     Method of the request.
+     * @return Byte array with the response of the service.
+     * @throws IOException
+     */
     private byte[] callService(URI requestUri, String method) throws IOException {
         String serviceUri = requestUri.getPath().substring(7);
         Function service = MDANSpark.search(serviceUri, method);

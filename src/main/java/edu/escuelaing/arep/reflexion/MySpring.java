@@ -13,6 +13,9 @@ import edu.escuelaing.arep.reflexion.components.Component;
 import edu.escuelaing.arep.reflexion.components.GetMapping;
 import edu.escuelaing.arep.reflexion.components.PostMapping;
 
+/**
+ * This class is used to manage the components of the application.
+ */
 public class MySpring {
 
     private static MySpring _instance;
@@ -35,6 +38,12 @@ public class MySpring {
         return _instance;
     }
 
+    /**
+     * This method is used to get the classes of the package.
+     * @param directory is the directory of the classes.
+     * @return a list with the classes of the package.
+     * @throws ClassNotFoundException if the class is not found.
+     */
     public static List<Class<?>> getClasses(String directory) throws ClassNotFoundException {
         List<Class<?>> classes = new ArrayList<>();
         File dir = new File(directory);
@@ -56,6 +65,13 @@ public class MySpring {
         return classes;
     }
 
+    /**
+     * This method is used to load a class.
+     * @param className is the name of the class.
+     * @param directory is the directory of the class.
+     * @return the class loaded.
+     * @throws ClassNotFoundException if the class is not found.
+     */
     public static Class<?> loadClass(String className, String directory) throws ClassNotFoundException {
         try {
             File dir = new File(directory);
@@ -68,6 +84,11 @@ public class MySpring {
         }
     }
 
+    /**
+     * This method is used to load the component of the class.
+     * @param classFound is the class to load the component.
+     * @throws ClassNotFoundException if the class is not found.
+     */
     public static void loadComponent(Class<?> classFound) throws ClassNotFoundException {
         Method[] methods = classFound.getMethods();
         for (Method method : methods) {
@@ -78,7 +99,6 @@ public class MySpring {
             }
         }
 
-        System.out.println("==========GET COMPONENT================");
         printMap(GET_COMPONENT);
         printMap(POST_COMPONENT);
     }
@@ -89,6 +109,12 @@ public class MySpring {
         }
     }
 
+    /**
+     * This method is used to get the method of path.
+     * @param path is the path of the method.
+     * @param method is the method of the class.
+     * @return the method of the class.
+     */
     public static Method getMethod(String path, String method) {
         if (method.equals("GET")) {
             return GET_COMPONENT.get(path);
@@ -98,7 +124,5 @@ public class MySpring {
             return null;
         }
     }
-
-
 
 }
